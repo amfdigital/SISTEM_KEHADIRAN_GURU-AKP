@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Face Attendance - Sistem Kehadiran Pekerja</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- SIDEBAR KIRI -->
         <aside class="w-64 bg-[#0b192c] text-slate-300 flex flex-col justify-between hidden md:flex overflow-y-auto">
             <div>
-                <!-- Tajuk / Logo -->
                 <div class="p-6 flex items-center space-x-3 border-b border-slate-800">
                     <div class="bg-blue-600 text-white p-2 rounded-lg">
                         <i class="fa-solid fa-face-smile text-xl"></i>
@@ -27,7 +23,6 @@
                     </div>
                 </div>
 
-                <!-- Senarai Menu Sidebar -->
                 <div class="px-4 py-4 space-y-1 text-sm">
                     <button onclick="tukarHalaman('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-chart-pie w-5"></i><span>Dashboard</span>
@@ -40,16 +35,33 @@
                     <button onclick="tukarHalaman('kehadiran')" id="nav-kehadiran" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-clock-rotate-left w-5"></i><span>Kehadiran</span>
                     </button>
+                    <button onclick="tukarHalaman('jadual-kerja')" id="nav-jadual-kerja" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
+                        <i class="fa-solid fa-calendar-days w-5"></i><span>Jadual Kerja</span>
+                    </button>
                     <button onclick="tukarHalaman('cuti')" id="nav-cuti" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-umbrella-beach w-5"></i><span>Cuti</span>
                     </button>
+                    <button onclick="tukarHalaman('peranti')" id="nav-peranti" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
+                        <i class="fa-solid fa-mobile-screen-button w-5"></i><span>Peranti</span>
+                    </button>
 
                     <p class="text-[11px] font-semibold text-slate-500 uppercase px-3 pt-4 pb-1">Laporan</p>
-                    <button onclick="tukarHalaman('laporan-harian')" id="nav-laporan-harian" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-md text-left">
+                    <button onclick="tukarHalaman('laporan-harian')" id="nav-laporan-harian" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-chart-column w-5"></i><span>Laporan Harian</span>
                     </button>
                     <button onclick="tukarHalaman('laporan-bulanan')" id="nav-laporan-bulanan" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-chart-line w-5"></i><span>Laporan Bulanan</span>
+                    </button>
+                    <button onclick="tukarHalaman('laporan-pekerja')" id="nav-laporan-pekerja" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
+                        <i class="fa-solid fa-id-card-clip w-5"></i><span>Laporan Pekerja</span>
+                    </button>
+
+                    <p class="text-[11px] font-semibold text-slate-500 uppercase px-3 pt-4 pb-1">Sistem</p>
+                    <button onclick="tukarHalaman('tetapan')" id="nav-tetapan" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
+                        <i class="fa-solid fa-gear w-5"></i><span>Tetapan</span>
+                    </button>
+                    <button onclick="tukarHalaman('pengguna')" id="nav-pengguna" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
+                        <i class="fa-solid fa-user-gear w-5"></i><span>Pengguna</span>
                     </button>
                 </div>
             </div>
@@ -60,12 +72,11 @@
             </div>
         </aside>
 
-        <!-- KANDUNGAN UTAMA -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8">
                 <div id="breadcrumb" class="text-sm text-gray-500 font-medium">
-                    Laporan <span class="mx-2">/</span> <span class="text-gray-900 font-semibold">Laporan Kehadiran Harian</span>
+                    Sistem <span class="mx-2">/</span> <span id="breadcrumb-title" class="text-gray-900 font-semibold">Dashboard Utama</span>
                 </div>
                 <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Admin" class="w-9 h-9 rounded-full object-cover">
@@ -73,7 +84,6 @@
                 </div>
             </header>
 
-            <!-- 1. DASHBOARD -->
             <div id="page-dashboard" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard Utama</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -83,7 +93,6 @@
                 </div>
             </div>
 
-            <!-- 2. PEKERJA -->
             <div id="page-pekerja" class="p-8 hidden">
                 <div class="pb-4"><h2 class="text-2xl font-bold text-gray-900">Daftar Wajah Pekerja</h2></div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -107,7 +116,6 @@
                 </div>
             </div>
 
-            <!-- 3. KEHADIRAN -->
             <div id="page-kehadiran" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Kiosk Imbasan Kehadiran</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -127,7 +135,13 @@
                 </div>
             </div>
 
-            <!-- 4. CUTI -->
+            <div id="page-jadual-kerja" class="p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Pengurusan Jadual Kerja</h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                    <p class="text-sm text-gray-600">Tetapan jadual dan syif pekerja syarikat.</p>
+                </div>
+            </div>
+
             <div id="page-cuti" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Permohonan Cuti</h2>
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 max-w-2xl">
@@ -147,15 +161,21 @@
                 </div>
             </div>
 
-            <!-- 5. LAPORAN HARIAN -->
+            <div id="page-peranti" class="p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Pengurusan Peranti Kiosk</h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                    <p class="text-sm text-gray-600">Senarai peranti perkakasan kamera dan terminal yang dihubungkan.</p>
+                </div>
+            </div>
+
             <div id="page-laporan-harian" class="p-8">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-gray-900">Laporan Kehadiran Harian</h2>
-                    <button onclick="muatTurunLaporanHarian()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-700"><i class="fa-solid fa-download mr-2"></i> Segar Semula Data</button>
+                    <h2 class="text-2xl font-bold text-gray-900">Rekod Kehadiran Terkini</h2>
+                    <button onclick="muatTurunLaporanHarian()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-700"><i class="fa-solid fa-rotate mr-2"></i> Segar Semula</button>
                 </div>
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                     <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                        <span class="text-sm font-semibold text-gray-700">Rekod Kehadiran Terkini daripada Google Sheets</span>
+                        <span class="text-sm font-semibold text-gray-700">Tab Kehadiran: [ ID Pekerja | Nama Penuh | Tarikh & Masa | Status ]</span>
                         <input type="date" id="filter-tarikh" class="bg-white border border-gray-300 rounded-lg px-3 py-1.5 text-sm" onchange="tapisLaporanHarian()">
                     </div>
                     <div class="overflow-x-auto">
@@ -164,19 +184,18 @@
                                 <tr class="bg-gray-100 text-gray-600 text-xs uppercase font-bold border-b border-gray-200">
                                     <th class="p-4">ID Pekerja</th>
                                     <th class="p-4">Nama Penuh</th>
+                                    <th class="p-4">Tarikh & Masa</th>
                                     <th class="p-4">Status</th>
-                                    <th class="p-4">Tarikh & Masa Masuk</th>
                                 </tr>
                             </thead>
                             <tbody id="tabel-laporan-harian" class="divide-y divide-gray-200 text-sm text-gray-700">
-                                <tr><td colspan="4" class="p-6 text-center text-gray-400">Sedang memuat data dari Google Sheets...</td></tr>
+                                <tr><td colspan="4" class="p-6 text-center text-gray-400">Sedang memuat data daripada Google Sheets...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. LAPORAN BULANAN -->
             <div id="page-laporan-bulanan" class="p-8 hidden">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-900">Laporan Kehadiran Bulanan</h2>
@@ -186,16 +205,53 @@
                     <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Purata Kehadiran Sebulan</p><h3 id="stat-purata-hadir" class="text-3xl font-bold text-blue-600 mt-2">95%</h3></div>
                     <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Jumlah Kesalahan / Lewat</p><h3 id="stat-lewat" class="text-3xl font-bold text-amber-500 mt-2">4</h3></div>
                 </div>
+            </div>
+
+            <div id="page-laporan-pekerja" class="p-8 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Pangkalan Data Profil Pekerja</h2>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-50">
+                        <span class="text-sm font-semibold text-gray-700">Tab Pekerja: [ ID Pekerja | Nama Penuh | Jabatan | Jawatan | Tarikh & Masa | Status ]</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-600 text-xs uppercase font-bold border-b border-gray-200">
+                                    <th class="p-4">ID Pekerja</th>
+                                    <th class="p-4">Nama Penuh</th>
+                                    <th class="p-4">Jabatan</th>
+                                    <th class="p-4">Jawatan</th>
+                                    <th class="p-4">Tarikh & Masa</th>
+                                    <th class="p-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-laporan-pekerja" class="divide-y divide-gray-200 text-sm text-gray-700">
+                                <tr><td colspan="6" class="p-6 text-center text-gray-400">Tiada data pekerja dipaparkan.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-tetapan" class="p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Tetapan Sistem</h2>
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                    <h3 class="text-base font-bold text-gray-800 mb-4">Ringkasan Statistik Bulanan</h3>
-                    <p class="text-sm text-gray-600">Laporan bulanan merumuskan jumlah keseluruhan hari hadir, cuti, serta rekod bagi setiap pekerja berdasarkan pangkalan data anda.</p>
+                    <p class="text-sm text-gray-600">Konfigurasi tetapan asas sistem kehadiran.</p>
+                </div>
+            </div>
+
+            <div id="page-pengguna" class="p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Pengurusan Pengguna Sistem</h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                    <p class="text-sm text-gray-600">Senarai pentadbir dan hak akses sistem.</p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- JavaScript Logik -->
     <script>
         const urlWebApps = "https://script.google.com/macros/s/AKfycby0EwGZvITb8JyEbdwo7QZFeApfIqMl6y86U-eqFpaSyaqttCb1TN4Z-7F8cK_53Qot/exec";
         let senaraiDataKehadiranGlobal = [];
@@ -209,7 +265,11 @@
             }).catch(err => console.error("Ralat Kamera: ", err));
 
         function tukarHalaman(halaman) {
-            const senaraiHalaman = ['dashboard', 'pekerja', 'kehadiran', 'cuti', 'laporan-harian', 'laporan-bulanan'];
+            const senaraiHalaman = [
+                'dashboard', 'pekerja', 'kehadiran', 'jadual-kerja', 'cuti', 
+                'peranti', 'laporan-harian', 'laporan-bulanan', 'laporan-pekerja', 
+                'tetapan', 'pengguna'
+            ];
             
             senaraiHalaman.forEach(h => {
                 const el = document.getElementById('page-' + h);
@@ -217,84 +277,3 @@
                 const nav = document.getElementById('nav-' + h);
                 if(nav) nav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left";
             });
-
-            let targetPage = document.getElementById('page-' + halaman);
-            let targetNav = document.getElementById('nav-' + halaman);
-
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                if(halaman === 'laporan-harian') muatTurunLaporanHarian();
-            }
-
-            if (targetNav) {
-                targetNav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-md text-left";
-            }
-        }
-
-        function muatTurunLaporanHarian() {
-            const tbody = document.getElementById('tabel-laporan-harian');
-            tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-blue-600"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengambil data daripada Google Sheets...</td></tr>`;
-
-            fetch(`${urlWebApps}?action=getAttendance`)
-                .then(res => res.json())
-                .then(data => {
-                    senaraiDataKehadiranGlobal = data;
-                    paparDataKehadiran(data);
-                })
-                .catch(err => {
-                    console.error(err);
-                    tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-red-500">Gagal memuat turun data. Sila pastikan URL Web Apps betul.</td></tr>`;
-                });
-        }
-
-        function paparDataKehadiran(data) {
-            const tbody = document.getElementById('tabel-laporan-harian');
-            if (data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400">Tiada rekod kehadiran dijumpai.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = "";
-            data.reverse().forEach(row => {
-                let badgeColor = row.status === 'Hadir' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="p-4 font-medium">${row.employeeId}</td>
-                    <td class="p-4">${row.employeeName}</td>
-                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold ${badgeColor}">${row.status}</span></td>
-                    <td class="p-4 text-gray-500">${new Date(row.timestamp).toLocaleString()}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function tapisLaporanHarian() {
-            const tarikhDipilih = document.getElementById('filter-tarikh').value;
-            if(!tarikhDipilih) {
-                paparDataKehadiran(senaraiDataKehadiranGlobal);
-                return;
-            }
-            const filtered = senaraiDataKehadiranGlobal.filter(item => item.timestamp.includes(tarikhDipilih));
-            paparDataKehadiran(filtered);
-        }
-
-        function hantarDataPekerja() {
-            const payload = { type: "register", employeeId: document.getElementById('empId').value, employeeName: document.getElementById('empName').value, department: document.getElementById('empDepartment').value, role: document.getElementById('empRole').value };
-            fetch(urlWebApps, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).then(() => alert("Profil pekerja berjaya disimpan!"));
-        }
-
-        function rekodKehadiranSistem() {
-            const payload = { type: "attendance", employeeId: document.getElementById('empId').value, employeeName: document.getElementById('empName').value, status: "Hadir" };
-            fetch(urlWebApps, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
-            .then(() => {
-                document.getElementById('status-kotak').innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-3xl mb-2"></i><h4 class="font-bold text-emerald-700 text-sm">Kehadiran Berjaya Direkod!</h4>`;
-            });
-        }
-
-        function hantarPermohonanCuti() {
-            const payload = { type: "leave", employeeId: document.getElementById('leaveEmpId').value, employeeName: document.getElementById('leaveEmpName').value, leaveType: document.getElementById('leaveType').value, startDate: document.getElementById('startDate').value, endDate: document.getElementById('endDate').value, reason: document.getElementById('leaveReason').value };
-            fetch(urlWebApps, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).then(() => alert("Permohonan cuti dihantar!"));
-        }
-    </script>
-</body>
-</html>
