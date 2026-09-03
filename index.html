@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Face Attendance - Sistem Kehadiran Pekerja</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased">
 
     <div class="flex h-screen overflow-hidden">
         
+        <!-- SIDEBAR KIRI -->
         <aside class="w-64 bg-[#0b192c] text-slate-300 flex flex-col justify-between hidden md:flex overflow-y-auto">
             <div>
+                <!-- Tajuk / Logo -->
                 <div class="p-6 flex items-center space-x-3 border-b border-slate-800">
                     <div class="bg-blue-600 text-white p-2 rounded-lg">
                         <i class="fa-solid fa-face-smile text-xl"></i>
@@ -23,6 +27,7 @@
                     </div>
                 </div>
 
+                <!-- Senarai Menu Sidebar -->
                 <div class="px-4 py-4 space-y-1 text-sm">
                     <button onclick="tukarHalaman('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left">
                         <i class="fa-solid fa-chart-pie w-5"></i><span>Dashboard</span>
@@ -55,6 +60,7 @@
             </div>
         </aside>
 
+        <!-- KANDUNGAN UTAMA -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8">
@@ -67,6 +73,7 @@
                 </div>
             </header>
 
+            <!-- 1. DASHBOARD -->
             <div id="page-dashboard" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard Utama</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -76,6 +83,7 @@
                 </div>
             </div>
 
+            <!-- 2. PEKERJA -->
             <div id="page-pekerja" class="p-8 hidden">
                 <div class="pb-4"><h2 class="text-2xl font-bold text-gray-900">Daftar Wajah Pekerja</h2></div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -99,6 +107,7 @@
                 </div>
             </div>
 
+            <!-- 3. KEHADIRAN -->
             <div id="page-kehadiran" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Kiosk Imbasan Kehadiran</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -118,6 +127,7 @@
                 </div>
             </div>
 
+            <!-- 4. CUTI -->
             <div id="page-cuti" class="p-8 hidden">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Permohonan Cuti</h2>
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 max-w-2xl">
@@ -137,6 +147,7 @@
                 </div>
             </div>
 
+            <!-- 5. LAPORAN HARIAN -->
             <div id="page-laporan-harian" class="p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-900">Laporan Kehadiran Harian</h2>
@@ -153,8 +164,8 @@
                                 <tr class="bg-gray-100 text-gray-600 text-xs uppercase font-bold border-b border-gray-200">
                                     <th class="p-4">ID Pekerja</th>
                                     <th class="p-4">Nama Penuh</th>
-                                    <th class="p-4">Tarikh & Masa Masuk</th>
                                     <th class="p-4">Status</th>
+                                    <th class="p-4">Tarikh & Masa Masuk</th>
                                 </tr>
                             </thead>
                             <tbody id="tabel-laporan-harian" class="divide-y divide-gray-200 text-sm text-gray-700">
@@ -165,20 +176,26 @@
                 </div>
             </div>
 
+            <!-- 6. LAPORAN BULANAN -->
             <div id="page-laporan-bulanan" class="p-8 hidden">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-900">Laporan Kehadiran Bulanan</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Jumlah Hari Bekerja</p><h3 class="text-3xl font-bold text-gray-800 mt-2">22</h3></div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Purata Kehadiran Sebulan</p><h3 class="text-3xl font-bold text-blue-600 mt-2">95%</h3></div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Jumlah Kesalahan / Lewat</p><h3 class="text-3xl font-bold text-amber-500 mt-2">4</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Jumlah Hari Bekerja</p><h3 id="stat-hari-kerja" class="text-3xl font-bold text-gray-800 mt-2">22</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Purata Kehadiran Sebulan</p><h3 id="stat-purata-hadir" class="text-3xl font-bold text-blue-600 mt-2">95%</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"><p class="text-xs text-gray-500 uppercase font-semibold">Jumlah Kesalahan / Lewat</p><h3 id="stat-lewat" class="text-3xl font-bold text-amber-500 mt-2">4</h3></div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-base font-bold text-gray-800 mb-4">Ringkasan Statistik Bulanan</h3>
+                    <p class="text-sm text-gray-600">Laporan bulanan merumuskan jumlah keseluruhan hari hadir, cuti, serta rekod bagi setiap pekerja berdasarkan pangkalan data anda.</p>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- JavaScript Logik -->
     <script>
         const urlWebApps = "https://script.google.com/macros/s/AKfycby0EwGZvITb8JyEbdwo7QZFeApfIqMl6y86U-eqFpaSyaqttCb1TN4Z-7F8cK_53Qot/exec";
         let senaraiDataKehadiranGlobal = [];
@@ -230,16 +247,6 @@
                 });
         }
 
-        function formatTarikhMasa(tarikhString) {
-            if (!tarikhString) return "-";
-            const tarikhObj = new Date(tarikhString);
-            if (isNaN(tarikhObj.getTime())) return tarikhString;
-            return tarikhObj.toLocaleString('en-GB', { 
-                day: '2-digit', month: '2-digit', year: 'numeric', 
-                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true 
-            });
-        }
-
         function paparDataKehadiran(data) {
             const tbody = document.getElementById('tabel-laporan-harian');
             if (data.length === 0) {
@@ -250,14 +257,12 @@
             tbody.innerHTML = "";
             data.reverse().forEach(row => {
                 let badgeColor = row.status === 'Hadir' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
-                let tarikhFormatted = formatTarikhMasa(row.timestamp);
-
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="p-4 font-medium">${row.employeeId}</td>
                     <td class="p-4">${row.employeeName}</td>
-                    <td class="p-4 text-gray-500">${tarikhFormatted}</td>
-                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold ${badgeColor}">${row.status || 'Hadir'}</span></td>
+                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold ${badgeColor}">${row.status}</span></td>
+                    <td class="p-4 text-gray-500">${new Date(row.timestamp).toLocaleString()}</td>
                 `;
                 tbody.appendChild(tr);
             });
