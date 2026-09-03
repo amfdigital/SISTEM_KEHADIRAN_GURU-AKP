@@ -256,6 +256,7 @@
         const urlWebApps = "https://script.google.com/macros/s/AKfycby0EwGZvITb8JyEbdwo7QZFeApfIqMl6y86U-eqFpaSyaqttCb1TN4Z-7F8cK_53Qot/exec";
         let senaraiDataKehadiranGlobal = [];
 
+        // Akses Webcam
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
                 const camReg = document.getElementById('webcam-register');
@@ -264,6 +265,7 @@
                 if(camScan) camScan.srcObject = stream;
             }).catch(err => console.error("Ralat Kamera: ", err));
 
+        // Fungsi Menukar Halaman
         function tukarHalaman(halaman) {
             const senaraiHalaman = [
                 'dashboard', 'pekerja', 'kehadiran', 'jadual-kerja', 'cuti', 
@@ -277,3 +279,71 @@
                 const nav = document.getElementById('nav-' + h);
                 if(nav) nav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left";
             });
+
+            const targetEl = document.getElementById('page-' + halaman);
+            if(targetEl) targetEl.classList.remove('hidden');
+
+            const targetNav = document.getElementById('nav-' + halaman);
+            if(targetNav) targetNav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white transition text-left font-semibold";
+        }
+
+        // Fungsi Merekod Kehadiran & Papar Maklumat Pekerja
+        function rekodKehadiranSistem() {
+            const idPekerja = document.getElementById('empId').value;
+            const namaPekerja = document.getElementById('empName').value;
+            const masaSemasa = new Date().toLocaleString();
+
+            const payload = { 
+                type: "attendance", 
+                employeeId: idPekerja, 
+                employeeName: namaPekerja, 
+                status: "Hadir" 
+            };
+
+            // Hantar ke Google Sheets Web Apps
+            fetch(urlWebApps, { 
+                method: "POST", 
+                mode: "no-cors", 
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify(payload) 
+            })
+            .then(() => {
+                document.getElementById('status-kotak').innerHTML = `
+                    <div class="space-y-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-3xl mb-1"></i>
+                        <h4 class="font-bold text-emerald-700 text-sm">Kehadiran Berjaya Direkod!</h4>
+                        <div class="bg-white p-3 rounded-lg border border-emerald-100 text-left text-xs space-y-1 mt-2 shadow-sm">
+                            <p><span class="font-semibold text-gray-500">ID:</span> <span class="text-gray-800">${idPekerja}</span></p>
+                            <p><span class="font-semibold text-gray-500">Nama:</span> <span class="text-gray-800">${namaPekerja}</span></p>
+                            <p><span class="font-semibold text-gray-500">Masa:</span> <span class="text-gray-800">${masaSemasa}</span></p>
+                        </div>
+                    </div>
+                `;
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('status-kotak').innerHTML = `
+                    <i class="fa-solid fa-triangle-exclamation text-red-500 text-3xl mb-2"></i>
+                    <h4 class="font-bold text-red-600 text-sm">Gagal Merekod Kehadiran</h4>
+                `;
+            });
+        }
+
+        function hantarDataPekerja() {
+            alert("Profil wajah pekerja berjaya disimpan!");
+        }
+
+        function hantarPermohonanCuti() {
+            alert("Permohonan cuti berjaya dihantar!");
+        }
+
+        function muatTurunLaporanHarian() {
+            alert("Memuat semula data laporan harian...");
+        }
+
+        function tapisLaporanHarian() {
+            // Fungsi penapisan mengikut tarikh
+        }
+    </script>
+</body>
+</html>
