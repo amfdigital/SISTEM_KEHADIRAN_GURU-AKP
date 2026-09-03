@@ -122,11 +122,10 @@
                 </div>
             </div>
 
-            <!-- 2. HALAMAN DAFTAR PEKERJA (UTAMA) -->
+            <!-- 2. HALAMAN DAFTAR PEKERJA -->
             <div id="page-pekerja" class="p-8">
                 <div class="pb-4"><h2 class="text-2xl font-bold text-gray-900">Daftar Wajah Pekerja</h2></div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <!-- Maklumat Peribadi -->
                     <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
                         <h3 class="text-base font-bold text-gray-800 mb-5"><i class="fa-regular fa-user text-blue-600 mr-2"></i> Maklumat Pekerja</h3>
                         <form id="employeeForm" class="space-y-4">
@@ -149,52 +148,20 @@
                                 <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Jawatan</label>
                                 <input type="text" id="empRole" value="Operator" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Status</label>
-                                <div class="mt-1"><span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-md">Aktif</span></div>
-                            </div>
                         </form>
                     </div>
-
-                    <!-- Pendaftaran Kamera & Multi-Foto -->
                     <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between">
                         <div>
                             <h3 class="text-base font-bold text-gray-800 mb-4"><i class="fa-solid fa-camera text-blue-600 mr-2"></i> Pendaftaran Wajah</h3>
-                            
-                            <!-- Notis panduan kecil -->
-                            <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl mb-4 flex items-center space-x-2">
-                                <i class="fa-regular fa-circle-check text-emerald-600"></i>
-                                <span>Pastikan wajah berada di tengah bingkai dan pencahayaan mencukupi.</span>
-                            </div>
-
-                            <!-- Indikator 5 Slot Gambar -->
-                            <div class="grid grid-cols-5 gap-2 mb-4">
-                                <div class="border-2 border-emerald-500 rounded-xl p-1 text-center bg-gray-50 relative"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-full h-14 object-cover rounded-lg"><span class="absolute bottom-0 right-1 bg-emerald-600 text-white text-[9px] px-1 rounded-full">✓</span></div>
-                                <div class="border-2 border-emerald-500 rounded-xl p-1 text-center bg-gray-50 relative"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-full h-14 object-cover rounded-lg"><span class="absolute bottom-0 right-1 bg-emerald-600 text-white text-[9px] px-1 rounded-full">✓</span></div>
-                                <div class="border-2 border-emerald-500 rounded-xl p-1 text-center bg-gray-50 relative"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-full h-14 object-cover rounded-lg"><span class="absolute bottom-0 right-1 bg-emerald-600 text-white text-[9px] px-1 rounded-full">✓</span></div>
-                                <div class="border-2 border-dashed border-gray-300 rounded-xl h-16 flex items-center justify-center text-gray-400 text-xs font-bold">4</div>
-                                <div class="border-2 border-dashed border-gray-300 rounded-xl h-16 flex items-center justify-center text-gray-400 text-xs font-bold">5</div>
-                            </div>
-
-                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                                <div class="lg:col-span-8 bg-gray-900 rounded-xl overflow-hidden h-48 flex items-center justify-center border border-gray-800 relative">
-                                    <video id="webcam-register" autoplay playsinline class="absolute inset-0 w-full h-full object-cover opacity-90"></video>
-                                    <div class="absolute top-2 left-2 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded">LIVE</div>
-                                    <div class="absolute w-32 h-32 border-2 border-emerald-400 rounded-xl pointer-events-none"></div>
-                                    <div class="absolute bottom-2 text-white text-[10px] bg-black/60 px-2 py-0.5 rounded">Posisikan wajah anda</div>
-                                </div>
-                                <div class="lg:col-span-4 bg-gray-50 rounded-xl border border-gray-200 p-3 text-xs space-y-2">
-                                    <p class="font-bold text-gray-800">Panduan</p>
-                                    <p class="text-gray-600 text-[11px]">1. Hadap kamera<br>2. Pandang lurus<br>3. Jangan pakai cermin mata hitam<br>4. Pencahayaan baik<br>5. Ambil 5 gambar</p>
-                                </div>
+                            <div class="bg-gray-900 rounded-xl overflow-hidden h-56 flex items-center justify-center border border-gray-800 relative mb-4">
+                                <video id="webcam-register" autoplay playsinline class="absolute inset-0 w-full h-full object-cover opacity-80"></video>
+                                <div class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">LIVE</div>
+                                <div class="absolute w-36 h-36 border-2 border-emerald-400 rounded-xl pointer-events-none"></div>
                             </div>
                         </div>
-
-                        <div class="flex items-center justify-end space-x-3 pt-4 mt-4 border-t border-gray-100">
-                            <button type="button" class="px-5 py-2 rounded-xl border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">Batal</button>
-                            <button type="button" onclick="hantarDataPekerja()" class="px-6 py-2 rounded-xl bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 shadow-md transition flex items-center space-x-2">
-                                <i class="fa-solid fa-floppy-disk"></i>
-                                <span>Simpan Wajah</span>
+                        <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-100">
+                            <button type="button" onclick="hantarDataPekerja()" class="px-6 py-2.5 rounded-xl bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 shadow-md transition">
+                                <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Profil Wajah
                             </button>
                         </div>
                     </div>
@@ -232,20 +199,70 @@
                 </div>
             </div>
 
-            <!-- HALAMAN LAIN-LAIN (TEMPLATE UMUM) -->
+            <!-- 4. HALAMAN CUTI -->
+            <div id="page-cuti" class="p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Permohonan & Pengurusan Cuti</h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 max-w-2xl">
+                    <h3 class="text-base font-bold text-gray-800 mb-4"><i class="fa-solid fa-umbrella-beach text-blue-600 mr-2"></i> Borang Permohonan Cuti Pekerja</h3>
+                    <form id="leaveForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">ID Pekerja</label>
+                                <input type="text" id="leaveEmpId" value="EMP00123" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Nama Penuh</label>
+                                <input type="text" id="leaveEmpName" value="Ahmad Bin Ali" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Jenis Cuti</label>
+                            <select id="leaveType" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
+                                <option>Cuti Rehat / Tahunan</option>
+                                <option>Cuti Sakit (MC)</option>
+                                <option>Cuti Kecemasan</option>
+                                <option>Cuti Tanpa Gaji</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tarikh Mula</label>
+                                <input type="date" id="startDate" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tarikh Tamat</label>
+                                <input type="date" id="endDate" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Sebab / Catatan</label>
+                            <textarea id="leaveReason" rows="3" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm" placeholder="Nyatakan sebab cuti..."></textarea>
+                        </div>
+                        <div class="flex justify-end pt-2">
+                            <button type="button" onclick="hantarPermohonanCuti()" class="px-6 py-2.5 rounded-xl bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 shadow-md transition flex items-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Hantar Permohonan Cuti</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- HALAMAN UMUM (UNTUK MODUL LAIN) -->
             <div id="page-generic" class="p-8 hidden">
-                <h2 id="generic-title" class="text-2xl font-bold text-gray-900 mb-4">Tajuk Halaman</h2>
+                <h2 id="generic-title" class="text-2xl font-bold text-gray-900 mb-4">Tajuk Modul</h2>
                 <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm text-center">
                     <i class="fa-solid fa-person-digging text-blue-600 text-4xl mb-3"></i>
-                    <p class="text-gray-600 font-medium">Modul ini sedang aktif dan sedia untuk diintegrasikan dengan data pangkalan anda.</p>
+                    <p class="text-gray-600 font-medium">Modul ini sedia untuk diintegrasikan dengan pangkalan data anda.</p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- JavaScript Logik Navigasi & Kamera -->
+    <!-- JavaScript Logik Navigasi & Integrasi -->
     <script>
+        // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
         const urlWebApps = "https://script.google.com/macros/s/AKfycby0EwGZvITb8JyEbdwo7QZFeApfIqMl6y86U-eqFpaSyaqttCb1TN4Z-7F8cK_53Qot/exec";
 
         // Hidupkan Kamera Web
@@ -258,12 +275,11 @@
             })
             .catch(err => { console.error("Ralat Kamera: ", err); });
 
-        // Fungsi Tukar Halaman Komprehensif untuk Semua Menu Sidebar
+        // Fungsi Tukar Halaman Sidebar
         function tukarHalaman(halaman) {
-            // Senarai semua ID halaman
             const senaraiHalaman = ['dashboard', 'pekerja', 'kehadiran', 'jadual', 'cuti', 'peranti', 'laporan-harian', 'laporan-bulanan', 'laporan-pekerja', 'tetapan', 'pengguna'];
             
-            // Sembunyikan semua halaman
+            // Sembunyikan semua halaman & reset butang
             senaraiHalaman.forEach(h => {
                 const el = document.getElementById('page-' + h);
                 if(el) el.classList.add('hidden');
@@ -271,14 +287,14 @@
                 if(nav) nav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 transition text-left";
             });
 
-            // Paparkan halaman yang dipilih
+            document.getElementById('page-generic').classList.add('hidden');
+
             let targetPage = document.getElementById('page-' + halaman);
             let targetNav = document.getElementById('nav-' + halaman);
 
-            if (targetPage) {
+            if (targetPage && (halaman === 'dashboard' || halaman === 'pekerja' || halaman === 'kehadiran' || halaman === 'cuti')) {
                 targetPage.classList.remove('hidden');
             } else {
-                // Jika halaman khusus belum wujud, guna paparan umum
                 const generic = document.getElementById('page-generic');
                 generic.classList.remove('hidden');
                 document.getElementById('generic-title').innerText = tajukModul(halaman);
@@ -288,7 +304,6 @@
                 targetNav.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-md text-left";
             }
 
-            // Kemas kini Breadcrumb di atas
             document.getElementById('breadcrumb').innerHTML = `Modul <span class="mx-2">/</span> <span class="text-gray-900 font-semibold">${tajukModul(halaman)}</span>`;
         }
 
@@ -309,7 +324,7 @@
             return kamus[halaman] || 'Sistem Kehadiran';
         }
 
-        // Hantar Pendaftaran Pekerja ke Google Sheets
+        // Hantar Data Pekerja ke Google Sheets (Tab: Pekerja)
         function hantarDataPekerja() {
             const payload = {
                 type: "register",
@@ -327,7 +342,7 @@
             }).then(() => alert("Profil pekerja berjaya disimpan!"));
         }
 
-        // Rekod Kehadiran Scan
+        // Rekod Kehadiran Scan (Tab: Kehadiran)
         function rekodKehadiranSistem() {
             const idPekerja = document.getElementById('empId').value;
             const namaPekerja = document.getElementById('empName').value;
@@ -359,6 +374,31 @@
                 }, 1000);
             })
             .catch(error => { console.error("Ralat:", error); alert("Gagal merakam kehadiran."); });
+        }
+
+        // Hantar Permohonan Cuti (Tab: Cuti)
+        function hantarPermohonanCuti() {
+            const payload = {
+                type: "leave",
+                employeeId: document.getElementById('leaveEmpId').value,
+                employeeName: document.getElementById('leaveEmpName').value,
+                leaveType: document.getElementById('leaveType').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                reason: document.getElementById('leaveReason').value
+            };
+
+            alert("Menghantar permohonan cuti...");
+            fetch(urlWebApps, {
+                method: "POST", mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                alert("Permohonan cuti berjaya direkodkan ke tab Cuti!");
+            }).catch(err => {
+                console.error("Ralat:", err);
+                alert("Gagal menghantar permohonan.");
+            });
         }
     </script>
 </body>
